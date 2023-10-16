@@ -14,14 +14,12 @@ from app.server.img_db import ImageDatabase
 RESNET_DEPTH = 50
 REDUCTION_DIM = 2048
 relup = True
-CHECKPOINT_FILE = ''
-DATAROOT = 'resorts/forbidden_city'
-
+CHECKPOINT_FILE = 'weights/CVPR2022_CVNet_R50.pyth'
 
 def init_model():
     model = CVNet_Rerank(RESNET_DEPTH, REDUCTION_DIM, relup)
     model = model.cuda(device=torch.cuda.current_device())
-    checkpoint.load_checkpoint(CHECKPOINT_FILE, model)
+    checkpoint.load_checkpoint(os.path.join(os.path.dirname(__file__), CHECKPOINT_FILE), model)
     return model
 
 @torch.no_grad()

@@ -59,7 +59,7 @@ class CVNet_Rerank(nn.Module):
             score = self.softmax(logits_qk)[:,1]
             
         return score
-    def extract_global_descriptor(self, im_q, gemp=True, rgem=True, sgem=True, scale_list=[1.0]):
+    def extract_global_descriptor(self, im_q, gemp=True, rgem=True, sgem=True, scale_list=1):
         # compute query features
         res = self.encoder_q(im_q, scale_list, gemp, rgem, sgem)
         return res
