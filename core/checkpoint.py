@@ -10,7 +10,7 @@
 import os
 
 import torch
-from config import cfg
+# from config import cfg
 
 def load_checkpoint(checkpoint_file, model):
     """Loads the checkpoint from the given file."""

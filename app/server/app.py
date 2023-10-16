@@ -1,13 +1,14 @@
 # Author: Darius H. 2023/10/15
 # 
-
+import cv2
+import os
 import torch
 import core.checkpoint as checkpoint
 
 from model.CVNet_Rerank_model import CVNet_Rerank
 from modules.reranking.MDescAug import MDescAug
 from modules.reranking.RerankwMDA import RerankwMDA
-from img_db import ImageDatabase
+from app.server.img_db import ImageDatabase
 
 # default hyperparameters
 RESNET_DEPTH = 50
@@ -62,3 +63,11 @@ def server(query_img, geo_location):
     ranks = rank(query_img)
     ans = ranks[-1]
     return ans
+
+def test():
+    img_path = os.path.join(os.path.dirname(__file__), 'resorts/forbidden_city/query.jpeg')
+    query_img = cv2.imread(img_path)
+    ranks = rank(query_img)
+    print(ranks.shape)
+    
+test()
